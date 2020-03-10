@@ -1,0 +1,58 @@
+def valid_date(valid_day, valid_month, valid_year):
+    while not 1 <= valid_day <= 31:
+        return "Invalid"
+    while not 1 <= valid_month <= 12:
+        return "Invalid"
+    while not 1 <= valid_year <= 9999:
+        return "Invalid"
+
+
+def menu_options():
+    print('1)Give a date in the following format (dd.mm.yyyy):')
+    print('2)I want to print a month, give a month (mm.yyyy):')
+    option = int(input("Choose the option:"))
+
+    if option == 1:
+        input_day = int(input("dd"))
+        input_month = int(input('mm'))
+        input_year = int(input("yyyy"))
+        input_valid_date = f"{input_day}.{input_month}.{input_year}"
+        # print(input_valid_date)
+
+
+    list_of_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+    starting_day = 1
+    starting_year = 1968
+
+    dif_btw_days = input_day - starting_day
+    dif_btw_month = sum(list_of_days[0:input_month - 1])
+    dif_btw_year = round((input_year - starting_year) * 365)
+    possible_leap_year = int(dif_btw_year / 4)
+    days_in_leap_year = int(possible_leap_year + 1)
+    overall_dif = abs(dif_btw_days + dif_btw_month + dif_btw_year + days_in_leap_year)
+    getting_year = round(overall_dif / 7, 1)
+    the_end = str(getting_year).split('.')
+    the_end_2 = int(the_end[1])
+
+    def day_of_week(diff):
+        if diff == 0:
+            return 'Monday'
+        if diff == 1:
+            return "Tuesday"
+        if diff == 2:
+            return "Wednesday"
+        if diff == 3:
+            return "Thursday"
+        if diff == 6:
+            return "Friday"
+        if diff == 7:
+            return "Saturday"
+        if diff == 8:
+            return 'Sunday'
+        else:
+            return "Try again"
+
+    print(day_of_week(the_end_2))
+
+
+print(menu_options())
