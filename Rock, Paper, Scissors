@@ -1,0 +1,35 @@
+from random import randint
+
+first_player = str(input("1st player, Enter your choice:"))
+rand_num = randint(0, 2)
+if rand_num == 0:
+    computer = "rock"
+elif rand_num == 1:
+    computer == "paper"
+elif rand_num == 2:
+    computer == "scissors"
+
+
+print(f"Computer plays {computer}")
+
+if first_player == computer:
+    print("It's a tie!")
+elif first_player == "paper":
+    if computer == "rock":
+        print("1st Player win")
+    if computer == "scissors":
+        print("2nd computer win")
+
+elif first_player == "scissors":
+    if computer == "paper":
+        print("1st player win")
+    if computer == "rock":
+        print("2nd computer win")
+
+elif first_player == "rock":
+    if computer == "scissors":
+        print("1st player win")
+    if computer == "paper":
+        print("2nd computer win")
+else:
+    print("Something went wrong")
