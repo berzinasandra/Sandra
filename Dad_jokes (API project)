@@ -1,0 +1,30 @@
+import requests
+import random
+
+url = "https://icanhazdadjoke.com/search"
+theme = input(f"Let me tell you a joke! Give me a topic: ")
+
+response = requests.get(
+    url,
+    headers={"Accept": "application/json"},
+    params={"term": theme}
+)
+
+data = response.json()  # izveio apstradajamu tekstu
+
+result = (data["results"])  # atlasa tikai rezultatus/jokus (joke: ..., joke:..)
+
+real_jokes = [values['joke'] for values in result]
+
+how_many_jokes = len(result)
+
+
+def loop(result):
+    if how_many_jokes == 0:
+        print(f"Sorry, I don't have any jokes about {theme}! Please try again.")
+    else:
+        print(f"I've got {how_many_jokes} jokes about {theme}. Here it is:\n {random.choice(real_jokes)}")
+
+
+
+print(loop(data))
